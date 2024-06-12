@@ -12,7 +12,7 @@
 User.destroy_all
 
 User.create!([{
-  email: "fraiser@email.com",
+  email: "frasier@email.com",
   password: "gabbagoo"
 },
 {
