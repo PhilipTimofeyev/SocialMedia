@@ -1,6 +1,6 @@
 class FollowChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "follow"
+    stream_for current_user
   end
 
   def unsubscribed
@@ -8,9 +8,12 @@ class FollowChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    data['user'] = current_user
-    ActionCable.server.broadcast('follow', data)
+    user_id = data["follow"]["user_id"]
+    # data['user'] = current_user
+    # message = "subscribe"
+    user = User.find(user_id)
+    # ActionCable.server.broadcast(user, current_user)
+    FollowChannel.broadcast_to(user, { from_user: current_user })
   end
-
 
 end

@@ -10,13 +10,15 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
   },
 
   received(data) {
+    // alert("Works")
+    console.log(data.data)
     const followDisplay = document.querySelector('#follow-display')
     followDisplay.insertAdjacentHTML('beforeend', this.template(data))
   },
 
   template(data) {
     return `<article class="follow">
-                <p>${data.user.email} would like to follow you. Accept follow request?</p>
+                <p>${data.from_user.email} would like to follow you. Accept follow request?</p>
             </article>`
   }
 });
@@ -26,11 +28,9 @@ document.addEventListener("turbo:load", () => {
   if(form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault()
-      let followInput = document.querySelector('#follow-input')
-      console.log(followInput)
-      if(followInput == '') return;
+      let followInput = document.querySelector('#follow-input').firstElementChild.getAttribute('id')
       const follow = {
-        body: followInput
+        user_id: followInput
       }
       followChannel.send({follow: follow})
     })
