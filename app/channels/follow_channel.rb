@@ -6,4 +6,11 @@ class FollowChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
+
+  def receive(data)
+    data['user'] = current_user
+    ActionCable.server.broadcast('follow', data)
+  end
+
+
 end

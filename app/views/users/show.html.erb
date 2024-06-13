@@ -2,3 +2,12 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 <h5><%= @user.email%></h5>
+
+
+<div id="follow-form">
+	<%= form_for @user do |f| %>
+		<div id="follow-input"> <%=hidden_field_tag @user.id%> </div>
+	  <%= f.button "Follow"%>
+	<% end %>
+</div>
+

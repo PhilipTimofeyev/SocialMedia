@@ -10,21 +10,29 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
   },
 
   received(data) {
-    // Called when there's incoming data on the websocket for this channel
+    const followDisplay = document.querySelector('#follow-display')
+    followDisplay.insertAdjacentHTML('beforeend', this.template(data))
+  },
+
+  template(data) {
+    return `<article class="follow">
+                <p>${data.user.email} would like to follow you. Accept follow request?</p>
+            </article>`
   }
 });
 
 document.addEventListener("turbo:load", () => {
-  let form = document.querySelector('#follow-request')
+  let form = document.querySelector('#follow-form')
   if(form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault()
-      let messageInput = document.querySelector('#message-input').value
-      if(messageInput == '') return;
-      const message = {
-        body: messageInput
+      let followInput = document.querySelector('#follow-input')
+      console.log(followInput)
+      if(followInput == '') return;
+      const follow = {
+        body: followInput
       }
-      messageChannel.send({message: message})
+      followChannel.send({follow: follow})
     })
   }
 })
