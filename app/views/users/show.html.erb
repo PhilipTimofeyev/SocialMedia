@@ -1,6 +1,5 @@
 
-<h3> Profile for <%= @user.email%> </h3>
-
+<h1> Profile for <%= @user.email%> </h1>
 
 <div id="follow-form">
 	<%= form_for @user do |f| %>
@@ -9,3 +8,18 @@
 	<% end %>
 </div>
 
+<h3> Followers: </h3>
+
+<% @user.followers.each do |follower| %>
+<ul>
+<li><%= follower.email %> </li>
+</ul>
+<% end %> 
+
+<h3> Following: </h3>
+
+<% @user.following.each do |following| %>
+<ul>
+	<li><%= following.email %> </li>
+</ul>
+<% end %> 

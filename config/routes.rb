@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :users, :only =>[:index, :show]
+  resources :follows, :only =>[:new, :create]
 end
