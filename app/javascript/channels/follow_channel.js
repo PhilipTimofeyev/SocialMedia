@@ -25,9 +25,8 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
                 <p>${data.from_user.email} would like to follow you. Accept follow request?</p>
                   <form action="/follows" method="post" id="accept-form">
                   <input id="from" name="from_user" type="hidden" value=${data.from_user.id}/>
-                    <button type="submit" id="accept-form">Submit</button>
+                    <button type="submit" id="accept-form">Accept</button>
                   </form>
-                </form>
             </article>`
   },
 

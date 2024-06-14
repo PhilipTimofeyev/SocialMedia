@@ -20,4 +20,14 @@ class FollowsController < ApplicationController
 
 		# debugger
 	end
+
+	def destroy
+		# debugger
+	  @follow = Follow.find_by(follower_id: current_user, following_id: params[:id])
+	  # debugger
+
+	  @follow.destroy
+
+	  redirect_to user_path(current_user.id)
+	end
 end

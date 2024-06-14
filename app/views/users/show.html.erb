@@ -20,6 +20,10 @@
 
 <% @user.following.each do |following| %>
 <ul>
-	<li><%= following.email %> </li>
+<li><%= following.email %>
+<%= link_to "Unfollow", follow_path(following), data: {
+                  turbo_method: :delete
+                } %>
+              </li>
 </ul>
 <% end %> 
