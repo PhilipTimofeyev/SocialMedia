@@ -5,8 +5,9 @@
     <li>
       <%= post.title %>
       <%= post.content %>
-    </li>
-
+    </li> 
+      Likes: <%= post.likes.count %>
+      <%= button_to "Like", likes_path(post) %>
       <%= link_to "Edit", edit_post_path(post) %>
       <%= link_to "Delete", post_path(post), data: {
                         turbo_method: :delete,
