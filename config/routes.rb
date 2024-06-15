@@ -19,7 +19,10 @@ Rails.application.routes.draw do
       delete "unlike", to: "posts#unlike"
     end
   end
-  resources :users, :only =>[:index, :show]
-  resources :follows, :only =>[:new, :create, :destroy]
+  resources :users, :only =>[:index, :show] do
+    member do
+      post "follow", to: "users#follow_request"
+    end
+  end
   resources :likes, :only =>[:new, :create, :destroy]
 end

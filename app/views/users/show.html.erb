@@ -1,12 +1,7 @@
 
 <h1> Profile for <%= @user.email%> </h1>
 
-<div id="follow-form">
-	<%= form_for @user do |f| %>
-		<div id="follow-input"> <%=hidden_field_tag @user.id%> </div>
-	  <%= f.button "Follow"%>
-	<% end %>
-</div>
+<%= button_to "Follow", follow_user_path(@user) %>
 
 <h3> Followers: </h3>
 
