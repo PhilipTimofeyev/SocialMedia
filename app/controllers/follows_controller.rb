@@ -22,7 +22,7 @@ class FollowsController < ApplicationController
 	end
 
 	def destroy
-		# debugger
+		debugger
 	  @follow = Follow.find_by(follower_id: current_user, following_id: params[:id])
 	  # debugger
 

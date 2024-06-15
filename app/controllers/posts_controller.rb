@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+	before_action :set_post, only: [:edit, :update, :destroy, :like, :unlike]
+
+
 	def index
 		@posts = Post.all
 	end
@@ -38,7 +41,21 @@ class PostsController < ApplicationController
 	  redirect_to posts_path, status: :see_other
 	end
 
+	def like
+		current_user.likes.create(likeable: @post)
+		render partial: "posts/post", locals: { post: @post}
+	end
+
+	def unlike
+		current_user.likes.find_by(likeable: @post).destroy
+		render partial: "posts/post", locals: { post: @post}
+	end
+
 	private
+
+	def set_post
+		@post = Post.find(params[:id])
+	end
 
 	def post_params
 		params.require(:post).permit(:title, :content)

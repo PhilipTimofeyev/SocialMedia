@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'users/index'
   get 'users/show'
-  get 'home/index'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,7 +13,12 @@ Rails.application.routes.draw do
 
   root to: "posts#index"
 
-  resources :posts
+  resources :posts do 
+    member do
+      post "like", to: "posts#like"
+      delete "unlike", to: "posts#unlike"
+    end
+  end
   resources :users, :only =>[:index, :show]
   resources :follows, :only =>[:new, :create, :destroy]
   resources :likes, :only =>[:new, :create, :destroy]
