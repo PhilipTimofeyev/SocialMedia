@@ -8,6 +8,7 @@
 		<li>
 		<%= request.follower.email %>
 		<%= button_to "Accept Request", follow_user_path(request.follower.id), method: :patch %>
+		<%= button_to "Decline Request", follow_user_path(request.follower.id), method: :delete %>
 		</li>
 	</ul>
 <% end %> 

@@ -38,4 +38,13 @@ class UsersController < ApplicationController
       FollowChannel.broadcast_to(requesting_user, { from_user: current_user, template: 'accept' })
     end
   end
+
+  def delete_request
+    requesting_user_id = params["id"].to_i
+    requesting_user = User.find_by_id(requesting_user_id)
+
+    follow = Follow.find_by(follower_id: requesting_user_id, following_id: current_user.id)
+    follow.destroy
+
+  end
 end
