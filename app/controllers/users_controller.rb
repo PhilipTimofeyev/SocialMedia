@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @requests = @user.follower_relationships.where(accepted:false)
   end
 
   def follow_request
@@ -33,5 +34,8 @@ class UsersController < ApplicationController
 
     follow = Follow.find_by(follower_id: requesting_user_id, following_id: current_user.id)
     follow.accepted = true
+    if follow.save
+      FollowChannel.broadcast_to(requesting_user, { from_user: current_user, template: 'accept' })
+    end
   end
 end

@@ -3,11 +3,11 @@
 
 <%= button_to "Follow", follow_user_path(@user) %>
 
-<% @user.followers.each do |follower| %>
+<% @requests.each do |request| %>
 	<ul>
 		<li>
-		<%= follower.email %>
-		<%= button_to "Accept Request", follow_user_path(follower.id), method: :patch %>
+		<%= request.follower.email %>
+		<%= button_to "Accept Request", follow_user_path(request.follower.id), method: :patch %>
 		</li>
 	</ul>
 <% end %> 
