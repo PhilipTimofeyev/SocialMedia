@@ -37,17 +37,17 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
   }
 });
 
-document.addEventListener("turbo:load", () => {
-  let form = document.querySelector('#follow-form')
-  if(form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault()
-      let followInput = document.querySelector('#follow-input').firstElementChild.getAttribute('id')
-      const follow = {
-        user_id: followInput
-      }
-      followChannel.send({follow: follow})
-    })
-  }
-  })
+// document.addEventListener("turbo:load", () => {
+//   let form = document.querySelector('#follow-form')
+//   if(form) {
+//     form.addEventListener('submit', (e) => {
+//       e.preventDefault()
+//       let followInput = document.querySelector('#follow-input').firstElementChild.getAttribute('id')
+//       const follow = {
+//         user_id: followInput
+//       }
+//       followChannel.send({follow: follow})
+//     })
+//   }
+//   })
 

@@ -8,13 +8,6 @@ class FollowChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    user_id = data["follow"]["user_id"]
-    # data['user'] = current_user
-    # message = "subscribe"
-    # debugger
-    user = User.find(user_id)
-    # ActionCable.server.broadcast(user, current_user)
-    FollowChannel.broadcast_to(user, { from_user: current_user, template: 'request' })
   end
 
 end
