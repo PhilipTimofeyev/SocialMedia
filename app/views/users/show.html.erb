@@ -15,12 +15,15 @@
 <h3> Followers: </h3>
 
 <% @user.followers.each do |follower| %>
-<ul>
-<li><%= follower.email %> </li>
-</ul>
+	<ul>
+		<li><%= follower.email %> </li>
+	</ul>
 <% end %> 
 
 <h3> Following: </h3>
 
 <% @user.following.each do |following| %>
+	<ul>
+		<li><%= following.email %> </li>
+	</ul>
 <% end %> 
