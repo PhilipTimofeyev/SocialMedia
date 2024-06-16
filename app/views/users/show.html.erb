@@ -3,6 +3,15 @@
 
 <%= button_to "Follow", follow_user_path(@user) %>
 
+<% @user.followers.each do |follower| %>
+	<ul>
+		<li>
+		<%= follower.email %>
+		<%= button_to "Accept Request", follow_user_path(follower.id), method: :patch %>
+		</li>
+	</ul>
+<% end %> 
+
 <h3> Followers: </h3>
 
 <% @user.followers.each do |follower| %>
@@ -14,11 +23,4 @@
 <h3> Following: </h3>
 
 <% @user.following.each do |following| %>
-<ul>
-<li><%= following.email %>
-<%= link_to "Unfollow", follow_path(following), data: {
-                  turbo_method: :delete
-                } %>
-              </li>
-</ul>
 <% end %> 
