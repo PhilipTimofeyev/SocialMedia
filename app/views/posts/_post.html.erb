@@ -2,6 +2,9 @@
 	
 	<p> <%= post.title%> </p>
 	<p> <%= post.content%> </p>
+	<ul>
+		<li> <%= post.user.email%> </li>
+	</ul>
 	<p> <%= pluralize(post.likes.size, 'like') %> </p>
 
 	<% if user_signed_in? %>

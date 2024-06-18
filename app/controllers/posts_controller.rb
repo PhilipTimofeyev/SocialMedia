@@ -4,8 +4,6 @@ class PostsController < ApplicationController
 
 	def index
 		@posts = Post.all
-		@post = Post.new
-		# @comment = @post.comments.new
 	end
 
 	def new
