@@ -1,8 +1,7 @@
- <%= form_with(model: comment) do |form| %>
-   <%= form.hidden_field :post_id %>
+ <%= form_with(model: [post, comment]) do |form| %>
+   <%= form.hidden_field :post_id%>
 
-   <%= form.label :text, "Text:" %>
-   <%= form.text_area :text %>
+   <%= form.text_area :content, placeholder: "Enter Comment"%>
 
    <div class="actions">
     <%= form.submit %>

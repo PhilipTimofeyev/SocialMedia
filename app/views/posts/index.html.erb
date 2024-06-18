@@ -1,17 +1,30 @@
 <h1>Posts</h1>
 
+<%= link_to "New Post", new_post_path %>
 <ul>
   <% @posts.each do |post| %>
     <%= render post %>
+    <%= link_to "Edit", edit_post_path(post) %>
+    <%= link_to "Delete", post_path(post), data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    } %>
 
+  <div>
+    <% post.comments.each do |comment| %>
+    <ul>
+      <li> <%= comment.content %> </li>
+      <ul>
+      <li> <%= comment.user.email %> </li>
+    </ul>
+  </ul>
+    <% end %>
 
-      <%= link_to "Edit", edit_post_path(post) %>
-      <%= link_to "Delete", post_path(post), data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "Are you sure?"
-                      } %>
-    <%= render "comments/form", comment: @comment%>
+    <%= render partial: "comments/form", locals: {
+    post: post,
+    comment: @comment || post.comments.new
+    }%>
   <% end %>
+</div>
 </ul>
 
-<%= link_to "New Post", new_post_path %>

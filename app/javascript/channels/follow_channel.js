@@ -10,7 +10,6 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
   },
 
   received(data) {
-    console.log(data)
     const followDisplay = document.querySelector('#follow-display')
 
     if (data['template'] == 'request') {
