@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    # debugger
   end
 
   def show
@@ -22,11 +23,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def unfollow
-    @follow = Follow.find_by(follower_id: current_user, following_id: params[:id])
+  # def unfollow
+  #   debugger
+  #   @follow = Follow.find_by(follower_id: current_user, following_id: params[:id])
 
-    @follow.destroy
-  end
+  #   @follow.destroy
+  # end
 
   def accept_request
     requesting_user_id = params["id"].to_i
@@ -43,8 +45,10 @@ class UsersController < ApplicationController
     requesting_user_id = params["id"].to_i
     requesting_user = User.find_by_id(requesting_user_id)
 
-    follow = Follow.find_by(follower_id: requesting_user_id, following_id: current_user.id)
+    follow = Follow.find_by(follower_id: current_user.id, following_id: requesting_user_id)
+    # debugger
     follow.destroy
+    render partial: "following", locals: { user: @current_user}
 
   end
 end

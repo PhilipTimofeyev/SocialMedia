@@ -2,6 +2,9 @@
 <p>Find me in app/views/users/index.html.erb</p>
 
 
+
+
+
 <% @users.each do |user| %>
-  <%= user.email %><br/>
+    <%= render partial: "following", locals: {user: user} %>
 <% end %>
