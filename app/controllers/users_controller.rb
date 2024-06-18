@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
-    # debugger
+    @users = User.where.not(id: current_user.id)
   end
 
   def show
