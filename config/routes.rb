@@ -21,11 +21,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :follows
+
   resources :users, :only =>[:index, :show] do
     member do
-      post "follow", to: "users#follow_request"
-      patch "follow", to: "users#accept_request"
-      delete "follow", to: "users#delete_request"
+      # post "follow", to: "users#follow_request"
+      # patch "follow", to: "users#accept_request"
+      # delete "follow", to: "users#delete_request"
     end
   end
 

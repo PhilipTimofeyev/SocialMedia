@@ -21,32 +21,28 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
 
   request(data) {
     return `<article class="follow-request">
-                <p>${data.from_user.email} would like to follow you. Accept follow request?</p>
-                  <form action="/users/${data.from_user.id}/follow" method="patch" id="accept-form">
-                  <input id="from" name="from_user" type="hidden" value=${data.from_user.id}/>
+                <p>${data.user_id.email} would like to follow you. Accept follow request?</p>
+                  <form action="/follows/${data.user_id.id}" method="patch" id="accept-form">
+                  <input id="from" name="user_id" type="hidden" value=${data.user_id.id}/>
                     <button type="submit" name="accept-form">Accept</button>
-                    <button type="decline" name="accept-form" formmethod="delete">Decline</button>
+                    <button type="decline" name="accept-forms" formmethod="delete" formaction="/follow">Decline</button>
                   </form>
             </article>`
   },
 
   accept(data) {
     return `<article class="accept-request">
-                <p>${data.from_user.email} has accepted your request!</p>
+                <p>${data.user_id.email} has accepted your request!</p>
             </article>`
   }
 });
 
 // document.addEventListener("turbo:load", () => {
-//   let form = document.querySelector('#follow-form')
+//   let form = document.getElementById('#haha')
+//   console.log(form)
 //   if(form) {
-//     form.addEventListener('submit', (e) => {
-//       e.preventDefault()
-//       let followInput = document.querySelector('#follow-input').firstElementChild.getAttribute('id')
-//       const follow = {
-//         user_id: followInput
-//       }
-//       followChannel.send({follow: follow})
+//     form.addEventListener('click', (e) => {
+//       console.log("lol")
 //     })
 //   }
 //   })
