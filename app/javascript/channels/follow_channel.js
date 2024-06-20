@@ -36,14 +36,3 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
   },
 
 });
-
-// document.addEventListener("turbo:load", () => {
-//   let form = document.getElementById('#haha')
-//   console.log(form)
-//   if(form) {
-//     form.addEventListener('click', (e) => {
-//       console.log("lol")
-//     })
-//   }
-//   })
-

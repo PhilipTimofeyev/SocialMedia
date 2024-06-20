@@ -12,19 +12,18 @@
 	<%= render partial: "requests", locals: {request: @request, user: @user} %>
 <% end %> 
 
-	<h3> Followers: </h3>
+<h3> Followers: </h3>
 
-	<% @user.followers.each do |follower| %>
-		<ul>
-			<li><%= follower.email %> </li>
-		</ul>
-	<% end %> 
+<% @user.followers.each do |follower| %>
+	<ul>
+		<li><%= follower.email %> </li>
+	</ul>
+<% end %> 
 
-	<h3> Following: </h3>
+<h3> Following: </h3>
 
-	<% @user.following.each do |following| %>
-		<ul>
-			<li><%= following.email %> </li>
-		</ul>
-	<% end %> 
-<%# <% end %> 
+<% @user.following.each do |following| %>
+	<ul>
+		<li><%= following.email %> </li>
+	</ul>
+<% end %> 
