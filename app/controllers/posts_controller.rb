@@ -39,9 +39,7 @@ class PostsController < ApplicationController
 
 	def like
 		current_user.likes.create(likeable: @post)
-		# debugger
 		render partial: "posts/post", locals: { post: @post}
-		# FollowChannel.broadcast_to(@post.user, { user_id: current_user, template: 'like' })
 	end
 
 	def unlike

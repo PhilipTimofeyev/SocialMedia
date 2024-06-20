@@ -3,6 +3,7 @@ class FollowsController < ApplicationController
 	before_action :set_follows
 
 	def create
+		# debugger
     follow = Follow.new 
     follow.follower = @follower
     follow.following = @following
@@ -17,6 +18,7 @@ class FollowsController < ApplicationController
 	end
 
 	def update
+		# debugger
 	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
 	  follow.accepted = true
 
@@ -27,6 +29,7 @@ class FollowsController < ApplicationController
 	end
 
 	def destroy
+		# debugger
 	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
 	  follow.destroy
 	  update_follow_status
@@ -34,20 +37,26 @@ class FollowsController < ApplicationController
 
 	private
 
+	def follow_params
+		params.require(:follow).permit(:following, :follower)
+	end
+
 	def follow_exists?
 		Follow.exists?(follower_id: current_user.id, following_id: @following.id)
 	end
 
 	def set_follows
-		follower_id = params[:follower]
-		@follower = User.find_by_id(follower_id) || User.find_by_id(params[:id])
+		follower_id = follow_params[:follower]
+		@follower = User.find_by_id(follower_id)
 
-		following_id = params[:following]
+		following_id = follow_params[:following]
 		@following = User.find_by_id(following_id) || current_user
+
+		# debugger
 	end
 
 	def update_follow_status
-		@user = User.find_by_id(params[:following]) || User.find_by_id(params[:id])
+		@user = User.find_by_id(follow_params[:following]) || User.find_by_id(params[:id])
 		render turbo_stream:
 			turbo_stream.replace("follows",
 				partial: "users/following",

@@ -13,8 +13,8 @@
 		<ul>
 			<li>
 			<%= request.follower.email %>
-			<%= button_to "Accept Request", follow_path({following: current_user.id, follower: request.follower.id}), method: :patch %>
-			<%= button_to "Decline Request", follow_path({following: current_user.id, follower: request.follower.id}), method: :delete %>
+			<%= button_to "Accept Request", follow_path({follow: {following: current_user.id, follower: request.follower.id}}), method: :patch %>
+			<%= button_to "Decline Request", follow_path({follow: {following: current_user.id, follower: request.follower.id}}), method: :delete %>
 			</li>
 		</ul>
 	<% end %> 
