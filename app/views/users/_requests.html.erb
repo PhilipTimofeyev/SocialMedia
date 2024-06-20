@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "requests" do %>
+	<% @requests.each do |request| %>
+		<%= request.follower.email %>
+		<%= button_to "Accept Request", follow_path({follow: {following: current_user.id, follower: request.follower.id}, id: user.id}), method: :patch %>
+		<%= button_to "Decline Request", follow_path({follow: {following: current_user.id, follower: request.follower.id}, id: user.id}), method: :delete %>
+	<% end %>
+<% end %> 

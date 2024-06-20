@@ -21,7 +21,7 @@ class FollowsController < ApplicationController
 
 	  if @follow.save
 	    FollowChannel.broadcast_to(@follower, { user_id: current_user, template: 'accept' })
-	    update_follow_status
+	    update_request_status
 	  end
 	end
 
@@ -60,6 +60,18 @@ class FollowsController < ApplicationController
 			turbo_stream.replace("follows",
 				partial: "users/following",
 				locals: { user: @user})
+
+	end
+
+	def update_request_status
+		@user = User.find_by_id(follow_params[:following]) || User.find_by_id(params[:id])
+		@requests = @user.follower_relationships.where(accepted:false)
+		render turbo_stream:
+
+			turbo_stream.replace("requests",
+				partial: "users/requests",
+				locals: { request: @requests, user: @user})
+
 	end
 
 end

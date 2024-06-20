@@ -9,15 +9,8 @@
 <% end %> 
 
 <% if current_user == @user %>
-	<% @requests.each do |request| %>
-		<ul>
-			<li>
-			<%= request.follower.email %>
-			<%= button_to "Accept Request", follow_path({follow: {following: current_user.id, follower: request.follower.id}}), method: :patch %>
-			<%= button_to "Decline Request", follow_path({follow: {following: current_user.id, follower: request.follower.id}}), method: :delete %>
-			</li>
-		</ul>
-	<% end %> 
+	<%= render partial: "requests", locals: {request: @request, user: @user} %>
+<% end %> 
 
 	<h3> Followers: </h3>
 
@@ -34,4 +27,4 @@
 			<li><%= following.email %> </li>
 		</ul>
 	<% end %> 
-<% end %> 
+<%# <% end %> 
