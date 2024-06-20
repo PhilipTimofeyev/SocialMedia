@@ -60,7 +60,6 @@ class FollowsController < ApplicationController
 			turbo_stream.replace("follows",
 				partial: "users/following",
 				locals: { user: @user})
-
 	end
 
 	def update_request_status
@@ -71,7 +70,6 @@ class FollowsController < ApplicationController
 			turbo_stream.replace("requests",
 				partial: "users/requests",
 				locals: { request: @requests, user: @user})
-
 	end
 
 end
