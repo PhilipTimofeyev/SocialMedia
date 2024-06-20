@@ -1,24 +1,28 @@
 class FollowsController < ApplicationController
 
-	before_action :set_requestor
+	before_action :set_follows
 	# after_action :update_follow_status
 
 	def create
+		# debugger
     follow = Follow.new 
-    follow.follower = current_user
-    follow.following = @requesting_user
+    follow.follower = @follower
+    follow.following = @following
     follow.accepted = false
+
+    # debugger
 
     unless follow_exists?
 	    if follow.save
-	      FollowChannel.broadcast_to(@requesting_user, { user_id: current_user, template: 'request' })
+	      FollowChannel.broadcast_to(@following, { user_id: current_user, template: 'request' })
 	      update_follow_status
 	    end
 	  end
 	end
 
 	def update
-	  follow = Follow.find_by(follower_id: @requesting_user.id, following_id: current_user.id)
+		# debugger
+	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
 	  follow.accepted = true
 
 	  if follow.save
@@ -28,7 +32,8 @@ class FollowsController < ApplicationController
 	end
 
 	def destroy
-	  follow = Follow.find_by(follower_id: current_user.id, following_id: @requesting_user.id)
+	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
+	  # debugger
 	  follow.destroy
 	  update_follow_status
 	end
@@ -36,16 +41,19 @@ class FollowsController < ApplicationController
 	private
 
 	def follow_exists?
-		Follow.exists?(follower_id: current_user.id, following_id: @requesting_user.id)
+		Follow.exists?(follower_id: current_user.id, following_id: @following.id)
 	end
 
-	def set_requestor
-		requesting_user_id = params[:id].to_i
-		@requesting_user = User.find_by_id(requesting_user_id)
+	def set_follows
+		follower_id = params[:follower].to_i
+		@follower = User.find_by_id(follower_id)
+
+		following_id = params[:following].to_i
+		@following = User.find_by_id(following_id)
 	end
 
 	def update_follow_status
-		@user = @user = User.find_by_id(params[:id])
+		@user = User.find_by_id(params[:following])
 		render turbo_stream:
 			turbo_stream.replace("follows",
 				partial: "users/following",
