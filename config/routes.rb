@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 
   root to: "posts#index"
 
-  resources :posts do 
-    resources :comments, only: [:new, :create, :destroy]
+  resources :posts, except: [:show] do 
+    resources :comments, only: [:new, :create, :destroy], shallow: true
     member do
       post "like", to: "posts#like"
       delete "unlike", to: "posts#unlike"
