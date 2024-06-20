@@ -26,7 +26,7 @@ class FollowsController < ApplicationController
 	  follow.accepted = true
 
 	  if follow.save
-	    FollowChannel.broadcast_to(@requesting_user, { user_id: current_user, template: 'accept' })
+	    FollowChannel.broadcast_to(@follower, { user_id: current_user, template: 'accept' })
 	    update_follow_status
 	  end
 	end
@@ -46,14 +46,14 @@ class FollowsController < ApplicationController
 
 	def set_follows
 		follower_id = params[:follower].to_i
-		@follower = User.find_by_id(follower_id)
+		@follower = User.find_by_id(follower_id) || User.find_by_id(params[:id])
 
 		following_id = params[:following].to_i
-		@following = User.find_by_id(following_id)
+		@following = User.find_by_id(following_id) || current_user
 	end
 
 	def update_follow_status
-		@user = User.find_by_id(params[:following])
+		@user = User.find_by_id(params[:following]) || User.find_by_id(params[:id])
 		render turbo_stream:
 			turbo_stream.replace("follows",
 				partial: "users/following",

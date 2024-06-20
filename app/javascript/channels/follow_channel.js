@@ -25,7 +25,7 @@ const followChannel = consumer.subscriptions.create("FollowChannel", {
                   <form action="/follows/${data.user_id.id}" method="patch" id="accept-form">
                   <input id="from" name="user_id" type="hidden" value=${data.user_id.id}/>
                     <button type="submit" name="accept-form">Accept</button>
-                    <button type="decline" name="accept-forms" formmethod="delete" formaction="/follow">Decline</button>
+                    <button type="decline" name="accept-forms" formmethod="delete" formaction="/follows/${data.user_id.id}">Decline</button>
                   </form>
             </article>`
   },
