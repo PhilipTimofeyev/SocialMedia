@@ -1,16 +1,12 @@
 class FollowsController < ApplicationController
 
 	before_action :set_follows
-	# after_action :update_follow_status
 
 	def create
-		# debugger
     follow = Follow.new 
     follow.follower = @follower
     follow.following = @following
     follow.accepted = false
-
-    # debugger
 
     unless follow_exists?
 	    if follow.save
@@ -21,7 +17,6 @@ class FollowsController < ApplicationController
 	end
 
 	def update
-		# debugger
 	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
 	  follow.accepted = true
 
@@ -33,7 +28,6 @@ class FollowsController < ApplicationController
 
 	def destroy
 	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
-	  # debugger
 	  follow.destroy
 	  update_follow_status
 	end
