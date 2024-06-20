@@ -1,9 +1,8 @@
 class FollowsController < ApplicationController
 
-	before_action :set_follows
+	before_action :set_follower, :set_following, :set_follow
 
 	def create
-		# debugger
     follow = Follow.new 
     follow.follower = @follower
     follow.following = @following
@@ -18,20 +17,16 @@ class FollowsController < ApplicationController
 	end
 
 	def update
-		# debugger
-	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
-	  follow.accepted = true
+	  @follow.accepted = true
 
-	  if follow.save
+	  if @follow.save
 	    FollowChannel.broadcast_to(@follower, { user_id: current_user, template: 'accept' })
 	    update_follow_status
 	  end
 	end
 
 	def destroy
-		# debugger
-	  follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
-	  follow.destroy
+	  @follow.destroy
 	  update_follow_status
 	end
 
@@ -45,14 +40,18 @@ class FollowsController < ApplicationController
 		Follow.exists?(follower_id: current_user.id, following_id: @following.id)
 	end
 
-	def set_follows
+	def set_follower
 		follower_id = follow_params[:follower]
 		@follower = User.find_by_id(follower_id)
+	end
 
+	def set_following
 		following_id = follow_params[:following]
 		@following = User.find_by_id(following_id) || current_user
+	end
 
-		# debugger
+	def set_follow
+		@follow = Follow.find_by(follower_id: @follower.id, following_id: @following.id)
 	end
 
 	def update_follow_status
