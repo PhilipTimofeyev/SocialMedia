@@ -45,10 +45,10 @@ class FollowsController < ApplicationController
 	end
 
 	def set_follows
-		follower_id = params[:follower].to_i
+		follower_id = params[:follower]
 		@follower = User.find_by_id(follower_id) || User.find_by_id(params[:id])
 
-		following_id = params[:following].to_i
+		following_id = params[:following]
 		@following = User.find_by_id(following_id) || current_user
 	end
 
