@@ -55,18 +55,19 @@ class FollowsController < ApplicationController
 	end
 
 	def update_follow_status
-		@user = User.find_by_id(follow_params[:following]) || User.find_by_id(params[:id])
+		# @user = User.find_by_id(follow_params[:following]) || User.find_by_id(params[:id])
+		@users = User.where.not(id: current_user.id)
 		render turbo_stream:
 			turbo_stream.replace("follows",
 				partial: "users/following",
-				locals: { user: @user})
+				locals: { users: @users})
 	end
 
 	def update_request_status
 		@user = User.find_by_id(follow_params[:following]) || User.find_by_id(params[:id])
+		# @users = User.where.not(id: current_user.id)
 		@requests = @user.follower_relationships.where(accepted:false)
 		render turbo_stream:
-
 			turbo_stream.replace("requests",
 				partial: "users/requests",
 				locals: { request: @requests, user: @user})

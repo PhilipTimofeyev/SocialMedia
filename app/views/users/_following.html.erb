@@ -1,13 +1,13 @@
-<p> <%= link_to "#{user.user_name}", user_path(user.id) %>	</p>
 
 <%= turbo_frame_tag "follows" do %>
-  <% if user_signed_in? %>
+	<% users.each do |user| %>
+		<p> <%= link_to "#{user.user_name}", user_path(user.id), data: { turbo: "false" } %>	</p>
     <% if current_user.following_relationships.find_by(follower_id: current_user.id, following_id:user.id, accepted:true)%>
       <%= button_to "Unfollow", follow_path({follow:{following: user.id, follower: current_user.id}, id: user.id}), method: :delete %>
 	  <% elsif current_user.following_relationships.find_by(follower_id: current_user.id, following_id:user.id, accepted:false)%>
 	    <%= button_to "Delete Request", follow_path({follow:{following: user.id, follower: current_user.id}, id: user.id}), method: :delete %>
 	  <% else %>
 	      <%= button_to "Follow", follows_path(follow:{following: user.id, follower: current_user.id}), method: :post%>
- 	 	<% end %>	
+		<% end %>
 	<% end %>
 <% end %>

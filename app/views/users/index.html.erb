@@ -1,5 +1,3 @@
 <h1>Users</h1>
 
-<% @users.each do |user| %>
-    <%= render partial: "following", locals: {user: user} %>
-<% end %>
+<%= render partial: "following", locals: {users: @users} %>
