@@ -1,7 +1,6 @@
-<%= turbo_frame_tag "follows" do %>
-  
-  <p> <%= user.email%> </p>
+<p> <%= link_to "#{user.email}", user_path(user.id) %>	</p>
 
+<%= turbo_frame_tag "follows" do %>
   <% if user_signed_in? %>
     <% if current_user.following_relationships.find_by(follower_id: current_user.id, following_id:user.id, accepted:true)%>
       <%= button_to "Unfollow", follow_path({follow:{following: user.id, follower: current_user.id}, id: user.id}), method: :delete %>

@@ -16,7 +16,7 @@
 
 <% @user.followers.each do |follower| %>
 	<ul>
-		<li><%= follower.email %> </li>
+		<li><%= link_to "#{follower.email}", user_path(follower.id) %> </li>
 	</ul>
 <% end %> 
 
@@ -24,6 +24,6 @@
 
 <% @user.following.each do |following| %>
 	<ul>
-		<li><%= following.email %> </li>
+		<li><%= link_to "#{following.email}", user_path(following.id) %> </li>
 	</ul>
 <% end %> 
