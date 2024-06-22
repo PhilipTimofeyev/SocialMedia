@@ -3,7 +3,13 @@
 
    <%= form.text_area :content, placeholder: "Enter Comment"%>
 
+   <ul>
+    <% comment.errors.full_messages_for(:content).each do |error| %>
+     <li><%= error %></li>
+    <% end %>
+   </ul>
+
    <div class="actions">
     <%= form.submit %>
    </div>
-  <% end %>
+<% end %>
