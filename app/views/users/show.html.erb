@@ -1,7 +1,8 @@
 <% if current_user == @user %>
 	<h1> My Profile</h1>
+	<h5> <%= link_to "Edit Profile", edit_user_registration_path(current_user.id) %> </h5>
 <% else %>	
-	<h1> <%= @user.email%>'s Profile </h1>
+	<h1> <%= @user.user_name%>'s Profile </h1>
 <% end %>	
 
 <% if current_user != @user %>
@@ -16,7 +17,7 @@
 
 <% @user.followers.each do |follower| %>
 	<ul>
-		<li><%= link_to "#{follower.email}", user_path(follower.id) %> </li>
+		<li><%= link_to "#{follower.user_name}", user_path(follower.id) %> </li>
 	</ul>
 <% end %> 
 
@@ -24,6 +25,6 @@
 
 <% @user.following.each do |following| %>
 	<ul>
-		<li><%= link_to "#{following.email}", user_path(following.id) %> </li>
+		<li><%= link_to "#{following.user_name}", user_path(following.id) %> </li>
 	</ul>
 <% end %> 

@@ -3,7 +3,7 @@
 	<p> <%= post.title%> </p>
 	<p> <%= post.content%> </p>
 	<ul>
-		<li> <%= post.user.email%> </li>
+		<li> <%= post.user.user_name%> </li>
 	</ul>
 	<p> <%= pluralize(post.likes.size, 'like') %> </p>
 
