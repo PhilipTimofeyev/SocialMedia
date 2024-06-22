@@ -7,7 +7,7 @@
 	</ul>
 	<p> <%= pluralize(post.likes.size, 'like') %> </p>
 
-	<% if user_signed_in? %>
+	<% if post.user != current_user %>
 		<% if current_user && post.likes.exists?(user_id: current_user.id) %>
 			<%= button_to "Unlike", unlike_post_path(post), method: :delete %>
 		<% else %>

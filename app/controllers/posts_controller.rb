@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 	end
 
 	def update
-	  if @post.update(post_params)
+	  if @post.update(post_params) && @post.user == current_user
 	    redirect_to posts_path
 	  else
 	    render :edit, status: :unprocessable_entity
