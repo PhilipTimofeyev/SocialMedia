@@ -5,9 +5,9 @@
 	<h1> <%= @user.user_name%>'s Profile </h1>
 <% end %>	
 
-<% if current_user != @user %>
-	
-<% end %> 
+	<% Post.where(user: @user).each do |post| %>
+	  <%= render post %>
+  <% end %> 
 
 <% if current_user == @user %>
 	<%= render partial: "requests", locals: {request: @request, user: @user} %>

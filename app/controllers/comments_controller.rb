@@ -9,13 +9,11 @@ class CommentsController < ApplicationController
 	  @comment = @post.comments.build(comment_params)
 	  @comment.user_id=current_user.id
 
-	  respond_to do |format|
-	    if @comment.save
-	      redirect_to @comment.post, notice: "Comment was successfully created."
-	    else
-	      format.html { render :new, status: :unprocessable_entity}
-	    end
-	  end
+    if @comment.save
+      redirect_to @comment.post.user
+    else
+      render :new, status: :unprocessable_entity
+    end
 	end
 
 	def destroy

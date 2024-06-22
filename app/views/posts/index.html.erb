@@ -4,36 +4,17 @@
 <ul>
   <% @posts.each do |post| %>
     <%= render post %>
-    <% unless post.user == current_user %>
-      <%= link_to "Edit", edit_post_path(post) %>
-      <%= link_to "Delete", post_path(post), data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "Are you sure?"
-                      } %>
+      <%= turbo_frame_tag dom_id(post) do %>
+    </div>
+      <p> <%= pluralize(post.likes.size, 'like') %> </p>
+
+        <% if current_user && post.likes.exists?(user_id: current_user.id) %>
+          <%= button_to "Unlike", unlike_post_path(post), method: :delete %>
+        <% else %>
+          <%= button_to "Like", like_post_path(post) %>
+        <% end %>
+        <div>
+          <% end %>
     <% end %>
-
-  <div>
-    <% post.comments.each do |comment| %>
-    <ul>
-      <li> <%= comment.content %> </li>
-      <ul>
-      <li> <%= comment.user.user_name %> </li>
-
-    </ul>
-      <% if comment.user == current_user %>
-        <%= link_to "Delete", comment_path(comment), data: {
-                          turbo_method: :delete,
-                        } %>
-      <% end %>
-    </ul>
-    <% end %>
-
-    <%= render partial: "comments/form", locals: {
-      post: post,
-      comment: @comment || post.comments.new
-    }%>
-  <% end %>
-  
-  </div>
 </ul>
 
