@@ -10,7 +10,7 @@
 
   <div>
     <%= form.label :content %><br>
-    <%= form.text_area :content %><br>
+    <%= form.rich_text_area :content %><br>
     <% @post.errors.full_messages_for(:content).each do |message| %>
       <div><%= message %></div>
     <% end %>
