@@ -1,7 +1,7 @@
  <%= form_with(model: [post, comment]) do |form| %>
    <%= form.hidden_field :post_id%>
 
-   <%= form.text_area :content, placeholder: "Enter Comment"%>
+   <%= form.rich_text_area :content, placeholder: "Enter Comment"%>
 
    <ul>
     <% comment.errors.full_messages_for(:content).each do |error| %>
