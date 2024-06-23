@@ -1,6 +1,7 @@
 
 	<h3> <%= post.title%> </h3>
 	<p> <%= post.content%> </p>
+			<%=image_tag (post.image) if post.image.attached? %>
 	<ul>
 		<li> <%= link_to post.user.user_name, user_path(post.user.id) %>  </li>
 	</ul>
