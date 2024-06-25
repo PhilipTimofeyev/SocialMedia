@@ -32,11 +32,10 @@
       <li> <%= comment.content %> </li>
       <ul>
       <li> <%= link_to comment.user.user_name, user_path(comment.user.id) %>  </li>
-
     </ul>
       <% if comment.user == current_user %>
         <%= link_to "Delete", comment_path(comment), data: {
-                          turbo_method: :delete,
+                          turbo_method: :delete
                         } %>
       <% end %>
     </ul>

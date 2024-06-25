@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_rich_text :content
 
   validates :title, presence: true, length: { in: 2..30 }
-  validates :content, presence: true, length: { minimum: 3 }
+  validates :content, presence: true, length: { minimum: 3 }, unless: :image
 
   def image_as_thumbnail
     image.variant(resize_to_limit: [300, 300])
