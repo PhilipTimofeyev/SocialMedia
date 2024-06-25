@@ -26,24 +26,14 @@
 	<% end %>
 
 
-  <div>
-    <% post.comments.each do |comment| %>
-    <ul>
-      <li> <%= comment.content %> </li>
-      <ul>
-      <li> <%= link_to comment.user.user_name, user_path(comment.user.id) %>  </li>
-    </ul>
-      <% if comment.user == current_user %>
-        <%= link_to "Delete", comment_path(comment), data: {
-                          turbo_method: :delete
-                        } %>
-      <% end %>
-    </ul>
-    <% end %>
 
-    <%= render partial: "comments/form", locals: {
-      post: post,
-      comment: @comment || post.comments.new
-    }%>
+  <div>
+  	<%= render post.comments %>
+  	<%= render partial: "comments/form", locals: {
+  	  post: post,
+  	  comment: @comment || post.comments.new
+  	}%>
+  	<%# <%= render partial: "comments/comment", collection: post.comments, as: :comment  %> %>
+
   
   </div>

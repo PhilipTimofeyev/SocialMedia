@@ -9,8 +9,11 @@ class CommentsController < ApplicationController
 	  @comment = @post.comments.build(comment_params)
 	  @comment.user_id=current_user.id
 
+	  # debugger
+
     if @comment.save
       redirect_to @comment.post.user
+      # render :post
     else
       render :new, status: :unprocessable_entity
     end
@@ -18,6 +21,7 @@ class CommentsController < ApplicationController
 
 	def destroy
 	  @comment = Comment.find(params[:id])
+	  @post = Post.first
 	  @comment.destroy
 
 	  redirect_to posts_path, status: :see_other
