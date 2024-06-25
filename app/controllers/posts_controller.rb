@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
 
 	def index
-		@posts = Post.where(user_id: current_user.following).or Post.where(user_id:current_user.id)
+		@posts = Post.includes(:user).where(user_id: current_user.following).or Post.includes(:user).where(user_id:current_user.id)
 	end
 
 	def new
