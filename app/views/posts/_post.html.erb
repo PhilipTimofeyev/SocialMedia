@@ -25,15 +25,11 @@
 		<% end %>
 	<% end %>
 
-
-
   <div>
   	<%= render post.comments %>
   	<%= render partial: "comments/form", locals: {
   	  post: post,
   	  comment: @comment || post.comments.new
   	}%>
-  	<%# <%= render partial: "comments/comment", collection: post.comments, as: :comment  %> %>
-
   
   </div>

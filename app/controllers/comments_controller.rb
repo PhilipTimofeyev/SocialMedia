@@ -9,11 +9,8 @@ class CommentsController < ApplicationController
 	  @comment = @post.comments.build(comment_params)
 	  @comment.user_id=current_user.id
 
-	  # debugger
-
     if @comment.save
-      redirect_to @comment.post.user
-      # render :post
+      redirect_back(fallback_location: root_path)
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +21,7 @@ class CommentsController < ApplicationController
 	  @post = Post.first
 	  @comment.destroy
 
-	  redirect_to posts_path, status: :see_other
+	  redirect_back(fallback_location: root_path)
 	end
 
 	private
