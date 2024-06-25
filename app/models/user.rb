@@ -4,9 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_commit :add_default_profile_pic, on: [:create, :update]
+
   has_many :posts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
+
+  has_one_attached :image
 
   #follows relationships
   has_many :follows
@@ -19,6 +23,31 @@ class User < ApplicationRecord
 
   #validation
   validates :user_name, presence: true, uniqueness: true, length: { in: 2..30 }
+
+
+  def profile_photo
+    if image.attached?
+      image.variant(resize_to_fill: [250, 250])
+    else
+      "/default_profile.jpg"
+    end
+  end
+
+  private
+
+  def add_default_profile_pic
+    unless image.attached?
+      image.attach(
+        io: File.open(
+          Rails.root.join(
+          'app', 'assets', 'images', 'default_profile.png'
+          )
+        ),
+        filename: 'default_profile.png',
+        content_type: 'image/png'
+        )
+    end
+  end
 
 end
 
