@@ -1,9 +1,12 @@
+
 <% if current_user == @user %>
 	<h1> My Profile</h1>
 	<h5> <%= link_to "Edit Profile", edit_user_registration_path(current_user.id) %> </h5>
 <% else %>	
 	<h1> <%= @user.user_name%>'s Profile </h1>
 <% end %>	
+
+<%= link_to "New Post", new_post_path %>
 
 	<% Post.where(user: @user).each do |post| %>
 	  <%= render post %>
