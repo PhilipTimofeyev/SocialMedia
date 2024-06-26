@@ -59,6 +59,8 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  gem 'derailed'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -77,3 +79,5 @@ end
 gem "aws-sdk-s3", "~> 1.153"
 
 gem "dotenv-rails", "~> 3.1"
+
+gem "tailwindcss-rails", "~> 2.6"
