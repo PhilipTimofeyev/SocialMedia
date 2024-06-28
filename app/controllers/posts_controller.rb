@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 	def destroy
 	  @post.destroy
 
-	  redirect_to posts_path, status: :see_other
+	  redirect_back(fallback_location: root_path)
 	end
 
 	def like
