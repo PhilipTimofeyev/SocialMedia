@@ -1,35 +1,37 @@
-
+<div class="font-serif">
+	<div class="p-2">
 	<h3> <%= post.title%> </h3>
 	<p> <%= post.content%> </p>
 			<%=link_to(image_tag(post.image_as_thumbnail), post.image) if post.image.attached? %>
-	<ul>
-		<li> <%= link_to post.user.user_name, user_path(post.user.id) %>  </li>
+	<ul class="list-none">
+		<li> <%= link_to post.user.user_name, user_path(post.user.id), class:"bg-rose-900 hover:bg-rose-800 text-white font-bold py-1 px-4 text-xs border-blue-700 hover:border-blue-500 rounded no-underline no-underline"%>  </li>
 	</ul>
 	<div>
 	<% if post.user == current_user %>
-	  <%= link_to "Edit", edit_post_path(post) %>
-	  <%= link_to "Delete", post_path(post), data: {
+	  <%= link_to "Edit Post", edit_post_path(post), class:"bg-blue-500 hover:bg-blue-400 text-white font-bold py-1 px-4 text-xs border-blue-700 hover:border-blue-500 rounded no-underline" %>
+
+	  <%= link_to "Delete Post", post_path(post), class:"bg-blue-500 hover:bg-blue-400 text-white font-bold py-1 px-4 text-xs border-blue-700 hover:border-blue-500 rounded no-underline",
+	  								data: {
 	                    turbo_method: :delete,
 	                    turbo_confirm: "Are you sure?"
 	                  } %>
 	<% end %>
-	</div>
+</div>
+
 		
 	<%= turbo_frame_tag dom_id(post) do %>
-		<p> <%= pluralize(post.likes.size, 'like') %> </p>
-
 		<% if current_user && post.likes.exists?(user_id: current_user.id) %>
-			<%= button_to "Unlike", unlike_post_path(post), method: :delete %>
+			<%= button_to pluralize(post.likes.size, 'like'), unlike_post_path(post), method: :delete, class:"bg-violet-500 hover:bg-violet-400 text-white font-bold py-1 px-4 text-xs border-blue-700 hover:border-blue-500 rounded no-underline" %>
 		<% else %>
-			<%= button_to "Like", like_post_path(post) %>
+			<%= button_to pluralize(post.likes.size, 'like'), like_post_path(post), class:"bg-violet-500 hover:bg-violet-400 text-white font-bold py-1 px-4 text-xs border-blue-700 hover:border-blue-500 rounded no-underline" %>
 		<% end %>
 	<% end %>
-
+	</div>
   <div>
   	<%= render post.comments %>
   	<%= render partial: "comments/form", locals: {
   	  post: post,
   	  comment: @comment || post.comments.new
   	}%>
-  
+  </div>
   </div>
