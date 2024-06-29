@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalProject</title>
+    <title>Blogtopia</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,13 +12,12 @@
   </head>
 
   <body class="prose !max-w-none">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <h3 class="notice m-0 p-0 bg-red-500 text-center"><%= notice %></h3>
+    <h3 class="alert m-0 p-0 bg-red-500 text-center"><%= alert %></h3>
 
     <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-        <span class="font-semibold text-xl tracking-tight">Working Title</span>
+        <span class="font-semibold text-xl tracking-tight">Blogtopia</span>
       </div>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div class="text-lg  lg:flex-grow">
@@ -32,10 +31,10 @@
           <div>
             <a>
               <% if current_user %>
-                <%= link_to "#{current_user.user_name}", user_path(current_user.id), class:"inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"%>
-                <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class:"inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0" %>
+                <%= link_to "#{current_user.user_name}", user_path(current_user.id), class:"inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 no-underline"%>
+                <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class:"inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 no-underline" %>
               <% else %>
-                <%= link_to "Login", new_user_session_path, class:"inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0" %>
+                <%= link_to "Login", new_user_session_path, class:"inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 no-underline" %>
               <% end %>
             </a>
           </div>
