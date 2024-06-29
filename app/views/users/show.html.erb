@@ -1,4 +1,4 @@
-<div class="flex flex-row min-h-screen justify-center mt-10 ">
+<div class="flex flex-row min-h-screen justify-center">
 	<div>
 		<h1> <%= @user.user_name%></h1>
 		<%= image_tag(@user.profile_photo, class:"rounded-full")%>
@@ -22,8 +22,8 @@
 	</div>
 </div>
 
-<div class="w-2/5 m-10 mt-40">
-	<div class="m-3">
+<div class="w-2/5 m-10 mt-40 ">
+	<div class="m-3 ">
 		<% if current_user == @user %>
 			<%= link_to "New Post", new_post_path, class:"bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded no-underline" %>
 		<% end %> 
