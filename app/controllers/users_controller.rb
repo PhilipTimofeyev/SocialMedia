@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    # debugger
     @requests = @user.follower_relationships.where(accepted:false)
     @followers = @user.follower_relationships.where(accepted:true)
     @followings = @user.following_relationships.where(accepted:true)
