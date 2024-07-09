@@ -17,7 +17,7 @@ User.create!([{
   password: "123456"
 },
 {
-	user_name: "NileCrane",
+	user_name: "NilesCrane",
 	email: "niles@email.com",
 	password: "123456"
 },
@@ -34,6 +34,11 @@ User.create!([{
 {
 	user_name: "DaphneMoon",
 	email: "daphne@email.com",
+	password: "123456",
+},
+{
+	user_name: "GilChesterton",
+	email: "gil@email.com",
 	password: "123456",
 },
 ])
