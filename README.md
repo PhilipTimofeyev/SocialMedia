@@ -18,9 +18,10 @@ Users are able to:
 
 - Create a profile page with a profile picture.
 
-  
+  <img alt="profile" src="https://github.com/PhilipTimofeyev/SocialMedia/assets/26512752/8d0c391e-41da-4c6a-a0bf-1c8455a800cc" style="zoom: 33%;">
 
-  <img alt="profile" src="https://github.com/PhilipTimofeyev/SocialMedia/assets/images/profile" style="zoom: 33%;">
+
+  
 
 #### Features:
 
@@ -32,17 +33,20 @@ I'm Listening is only accessible to users with accounts, which are created and h
 
 Users are able to see links to other users on the main "User" page. Here, a button next to a user's username displays the follow status between the current user and a different user. There are three states for a button: 
 
-<img src="/Users/philiptimofeyev/Desktop/Screenshot 2024-07-09 at 7.48.59 AM.png" alt="Screenshot 2024-07-09 at 7.48.59 AM" style="zoom:33%;" />
+<img alt="users" src="https://github.com/PhilipTimofeyev/SocialMedia/assets/26512752/818ece43-0eea-4399-a805-976e61ee50b4" style="zoom:33%;">
+
 
 - Follow
 
   - By selecting "Follow", a follow request is sent to the selected User using Rails action cable. If the other user is online, they will instantly receive a notifcation letting them know a user has requested to follow them. 
 
-    <img src="/Users/philiptimofeyev/Desktop/Screenshot 2024-07-09 at 7.44.09 AM.png" alt="Screenshot 2024-07-09 at 7.44.09 AM" style="zoom:50%;" />
+    <img width="524" alt="request" src="https://github.com/PhilipTimofeyev/SocialMedia/assets/26512752/17dab0ff-c328-4145-aca3-6441eaf433d9" style="zoom:50%;">
+
 
   - They then have the option to select "Accept" or "Decline". If they select "Accept", the inital user will instantly receive a notification that their follow request has been accepted. 
 
-    <img src="/Users/philiptimofeyev/Desktop/Screenshot 2024-07-09 at 7.44.17 AM.png" alt="Screenshot 2024-07-09 at 7.44.17 AM" style="zoom:50%;" />
+    <img width="349" alt="accepted" src="https://github.com/PhilipTimofeyev/SocialMedia/assets/26512752/bd84913e-e1ec-4c3b-b35b-98cbd17cad90" style="zoom:50%;">
+
 
   - If the user the request was sent to chooses not to respond to the notification, or is not online, they will have a request with the same options on their profile page.
 
