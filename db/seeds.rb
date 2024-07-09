@@ -14,10 +14,26 @@ User.destroy_all
 User.create!([{
 	user_name: "FrasierCrane",
   email: "frasier@email.com",
-  password: "gabbagoo"
+  password: "123456"
 },
 {
 	user_name: "NileCrane",
 	email: "niles@email.com",
-	password: "gabbagoo"
-}])
+	password: "123456"
+},
+{
+	user_name: "RozDoyle",
+	email: "roz@email.com",
+	password: "123456",
+},
+{
+	user_name: "MartyCrane",
+	email: "martin@email.com",
+	password: "123456",
+},
+{
+	user_name: "DaphneMoon",
+	email: "daphne@email.com",
+	password: "123456",
+},
+])
