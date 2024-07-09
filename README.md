@@ -20,7 +20,7 @@ Users are able to:
 
   
 
-  <img src="/Users/philiptimofeyev/Desktop/Screenshot 2024-07-09 at 7.48.47 AM.png" alt="Screenshot 2024-07-09 at 7.48.47 AM" style="zoom: 33%;" />
+  <img alt="profile" src="https://github.com/PhilipTimofeyev/SocialMedia/assets/images/profile" style="zoom: 33%;">
 
 #### Features:
 
