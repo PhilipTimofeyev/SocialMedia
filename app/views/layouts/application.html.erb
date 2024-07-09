@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blogtopia</title>
+    <title>I'm Listening</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,12 +12,11 @@
   </head>
 
   <body class="prose !max-w-none">
-    <h3 class="notice m-0 p-0 bg-red-500 text-center"><%= notice %></h3>
-    <h3 class="alert m-0 p-0 bg-red-500 text-center"><%= alert %></h3>
 
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 px-4">
+      <%= image_tag("nav_icon.png", size: "54x30", alt: "Wine Glass") %>
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <span class="font-semibold text-xl tracking-tight">Blogtopia</span>
+        <span class="font-semibold text-xl tracking-tight"> <em> I'm Listening </em></span>
       </div>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div class="text-lg  lg:flex-grow">
@@ -40,6 +39,8 @@
           </div>
         </div>
       </nav>
+      <h3 class="notice m-0 p-0 bg-blue-500 text-center"><%= notice %></h3>
+      <h3 class="alert m-0 p-0 bg-blue-500 text-center"><%= alert %></h3>
       <h4 id="follow-display" class="bg-yellow-100 m-0">
       </h4>
       <div class="mt-10"> <%= yield %> </div>
