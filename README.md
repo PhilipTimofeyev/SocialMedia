@@ -1,8 +1,6 @@
-# Blog
+# I'm Listening
 
-https://immense-castle-96686-8ed3cc3852c4.herokuapp.com/users/sign_in
-
-This Ruby on Rails project is built to demonstrate a blog type site similar to Reddit or Instagram.
+This Ruby on Rails project is built to demonstrate a social media type site like Facebook.
 
 Users are able to:
 
